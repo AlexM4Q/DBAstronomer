@@ -1,0 +1,43 @@
+<Window x:Class="Desktop.Windows.HeavenlyBodyEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Desktop"
+        mc:Ignorable="d"
+        Title="HeavenlyBodyEditorWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Название" />
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="_nameTextBox" />
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Тип" />
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="_typeTextBox" />
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Удаленность от земли (км)" />
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="_distanceTextBox" />
+
+        <Label Grid.Row="3" Grid.Column="0" Content="Масса" />
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="_massTextBox" />
+
+        <Label Grid.Row="4" Grid.Column="0" Content="Радиус" />
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="_radiusTextBox" />
+
+        <Button Grid.Row="5" Grid.Column="0" Content="Ок"  Click="OkButton_OnClick"/>
+        <Button Grid.Row="5" Grid.Column="1" Content="Отмена" Click="CancelButton_OnClick" />
+
+    </Grid>
+</Window>
