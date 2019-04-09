@@ -3,41 +3,85 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="clr-namespace:Database.Models;assembly=Database"
         Closing="MainWindow_Closing"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    
-    <Grid Background="Lavender">
+        Title="Астрономия"
+        Width="600">
+
+    <Grid Margin="5"
+          Background="Lavender">
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="5" />
+            </Style>
+        </Grid.Resources>
+
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
         <TextBox Grid.Row="0"
                  Grid.Column="0"
-                 x:Name="_searchTextBox" />
+                 x:Name="_searchTextBox"
+                 Margin="5"
+                 Padding="5"
+                 FontSize="15" />
+
+        <ComboBox Grid.Row="0"
+                  Grid.Column="1"
+                  x:Name="_fieldComboBox"
+                  Margin="5"
+                  Padding="5"
+                  FontSize="15">
+            <ComboBoxItem IsSelected="True">По названию</ComboBoxItem>
+            <ComboBoxItem IsSelected="False">По типу</ComboBoxItem>
+            <ComboBoxItem IsSelected="False">По удаленности от Земли</ComboBoxItem>
+            <ComboBoxItem IsSelected="False">По массе</ComboBoxItem>
+            <ComboBoxItem IsSelected="False">По радиусу</ComboBoxItem>
+        </ComboBox>
 
         <Button Grid.Row="0"
-                Grid.Column="1"
+                Grid.Column="2"
                 Content="Искать"
                 Click="SearchButton_OnClick" />
 
         <DataGrid Grid.Row="1"
                   Grid.Column="0"
-                  Grid.ColumnSpan="2"
+                  Grid.ColumnSpan="3"
                   x:Name="_bodiesDataGrid"
-                  AutoGenerateColumns="True"
-                  ItemsSource="{DynamicResource ResourceKey=_bodies}" />
+                  Margin="5"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{DynamicResource ResourceKey=_bodies}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding (models:HeavenlyBody.Name)}" Width="200" Header="Название" />
+                <DataGridTextColumn Binding="{Binding (models:HeavenlyBody.Type)}" Width="100" Header="Тип" />
+                <DataGridTextColumn Binding="{Binding (models:HeavenlyBody.Distance)}" Width="150"
+                                    Header="Удаленность от Земли" />
+                <DataGridTextColumn Binding="{Binding (models:HeavenlyBody.Mass)}" Width="50" Header="Масса" />
+                <DataGridTextColumn Binding="{Binding (models:HeavenlyBody.Radius)}" Width="50" Header="Радиус" />
+            </DataGrid.Columns>
+        </DataGrid>
 
-        <Button Grid.Row="2"
-                Grid.Column="1"
-                Content="Добавить"
-                Click="AddButton_OnClick" />
+        <StackPanel Grid.Row="2"
+                    Grid.Column="2"
+                    Orientation="Horizontal">
+
+            <Button Content="Удалить"
+                    Click="RemoveButton_OnClick" />
+
+            <Button Content="Добавить"
+                    Click="AddButton_OnClick" />
+
+        </StackPanel>
     </Grid>
 </Window>
